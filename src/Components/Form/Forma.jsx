@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import footerimg from "../../img/_footer.jpg";
-import logoEncontro from '../../img/_encti.png';
+import logoSemanalp from '../../img/_sml.png';
 import logoMED from '../../img/_mnte.png';
 import logoMirex from '../../img/_mntrle.png';
 import jsPDF from 'jspdf';
@@ -76,35 +76,35 @@ export default function Form() {
                     doc.addImage(BarraAzul, 'PNG', 0, 0, BarradWidth, BarraHeight);
 
                     // Adicionar as insignias MED dentro do PDF
-                    // const logoMedWidth = 45;
-                    // const logoMedHeight = 25;
-                    // doc.addImage(logoMED, 'PNG', 5, 10, logoMedWidth, logoMedHeight);
+                    const logoMedWidth = 45;
+                    const logoMedHeight = 25;
+                    doc.addImage(logoMED, 'PNG', 5, 10, logoMedWidth, logoMedHeight);
 
-                    // Adicionar as insignias MED dentro do PDF
-                    // const logoMirexWidth = 45;
-                    // const logoMirexHeight = 25;
-                    // doc.addImage(logoMirex, 'PNG', 155, 10, logoMirexWidth, logoMirexHeight);
+                    // Adicionar as insignias MIREX dentro do PDF
+                    const logoMirexWidth = 45;
+                    const logoMirexHeight = 25;
+                    doc.addImage(logoMirex, 'PNG', 155, 10, logoMirexWidth, logoMirexHeight);
 
-                    // Adicionar insígnia no centro do PDF
-                    const logoEncontroWidth = 65;
-                    const logoEncontroHeight = 45;
-                    doc.addImage(logoEncontro, 'PNG', centerX(doc.internal.pageSize.width, logoEncontroWidth), 36, logoEncontroWidth, logoEncontroHeight);
+                    // Adicionar logo da Semana no centro do PDF
+                    const logoSemanalpWidth = 65;
+                    const logoSemanalpHeight = 45;
+                    doc.addImage(logoSemanalp, 'PNG', centerX(doc.internal.pageSize.width, logoSemanalpWidth), 36, logoSemanalpWidth, logoSemanalpHeight);
 
                     // Adicionar texto "Semana da Língua Portuguesa"
                     doc.setFont('Times New Roman', 'bold');
                     doc.setFontSize(25, 5);
                     doc.setTextColor(27, 117, 188); // Cor azul
-                    doc.text("Encontro Internacional", centerX(doc.internal.pageSize.width, 0), 90, { align: 'center' });
+                    doc.text("Semana da Língua Portuguesa", centerX(doc.internal.pageSize.width, 0), 90, { align: 'center' });
 
                     // Adicionar parágrafo "Partilha de Saberes, com vista ao Desenvolvimento da Língua Portuguesa"
                     doc.setFont('Times New Roman');
                     doc.setFontSize(12);
                     doc.setTextColor(0, 0, 0); // Cor preta
-                    doc.text("“Sobre Lexicologia, Lexicografia e Terminologia em Angola”", centerX(doc.internal.pageSize.width, 0), 97, { align: 'center' });
+                    doc.text("“Língua Portuguesa: Um Oceano de Culturas, um Mundo de Possibilidades.”", centerX(doc.internal.pageSize.width, 0), 97, { align: 'center' });
 
                     // Adicionar parágrafo "De 5 a 11 de Maio de 2023 - 4.ª edição"
                     doc.setFont('Times New Roman');
-                    doc.text("De 13 a 15 de Novembro de 2024 - 1.ª edição", centerX(doc.internal.pageSize.width, 0), 104, { align: 'center' });
+                    doc.text("De 5 a 10 de Maio de 2025 - 6.ª edição", centerX(doc.internal.pageSize.width, 0), 104, { align: 'center' });
 
                     // Adicionar detalhes do formulário ao PDF com estilos personalizados
                     doc.setFont('Times New Roman');
@@ -157,7 +157,7 @@ export default function Form() {
             });
     };
     const WordDoc = () => {
-        const emailRecipient = 'encontrointernacional.ao@gmail.com'; // Email do destinatário
+        const emailRecipient = 'semana.dalp@med.gov.ao'; // Email do destinatário
         const emailSender = data.email; // Email do emissor
         const subject = 'Nome completo (o mesmo utilizado na ficha):'; // Assunto do e-mail (opcional)
         const body = 'Endereço de correio electrónico (o mesmo utilizado na ficha):      \n\n\nInsira o arquivo Word do Resumo'; // Corpo do e-mail (opcional)
@@ -170,15 +170,25 @@ export default function Form() {
         setShowForm(true);
     };
 
+    const Zoom = (e) => {
+        const link_acss = '33GyORtLPQslqbDGFt446r8FGOJ0g9.1'; 
+        window.open(
+            `https://us06web.zoom.us/j/81294850770?pwd=${link_acss}`
+        );
+
+        setShowForm(true);
+    };
+
     return (
         <div>
             {showForm ? (
             <section className="form__section">
                 <div className="container form__section-container">
-                    <div className="logoEncontro"><img src={logoEncontro} width="250" id="Encontro_internacional" /></div>
-                    <h1 id="Tema">Encontro Internacional</h1>
-                    <h1 id="Tema1">“Sobre Lexicologia, Lexicografia e Terminologia em Angola”</h1>
-                    <h1 id="Tema3">De 13 a 15 de Novembro de 2024 - 1.ª edição</h1>
+                    <div className="logoSemanalp"><img src={logoSemanalp} width="250" id="semana_lingua" /></div>
+                    <h1 id="Tema">Semana da Língua Portuguesa</h1>
+                    <h1 id="Tema1">“Língua Portuguesa: Um Oceano de Culturas, um Mundo de Possibilidades.”</h1>
+                    <h1 id="Tema3">De 5 a 10 de Maio de 2025 - 6.ª edição</h1>
+                    <h1 id="Tema6">Inscrições até ao dia 30 de Abril</h1>
                     <h1 id="Tema5">Formulário de Inscrição</h1>
 
 
@@ -211,9 +221,12 @@ export default function Form() {
 
                         {/* Criar o campo, quando o usuario digitar valor no campo, chamar com onChange a funcao valorInput*/}
                         {/* Deixar o textarea com valor de caracteres em infinito*/}
-                        <textarea name="resumo" id="Tema4" cols="30" rows="10" placeholder="Palavras Chaves" onChange={valorInput} value={data.resumo} maxLength={990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000} required></textarea>
-
-                        <input type="submit" name="Increver" value="Inscrever-se" className="btn" />
+                        <textarea name="resumo" id="Tema4" cols="30" rows="10" placeholder="Resumo" onChange={valorInput} value={data.resumo} maxLength={990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000} required></textarea>
+                        <div className='btns-container'>
+                            <input type="submit" name="Increver" value="Inscrever-se" className="btn" />
+                            {/* <input type="submit" value="Participar via Zoom" className='btn' onclick="window.location.href='https://us06web.zoom.us/j/81294850770?pwd=33GyORtLPQslqbDGFt446r8FGOJ0g9.1';"/> */}
+                            <label htmlFor="" onClick={Zoom} >Click para participar -- <a onClick={Zoom} > Participar</a></label>
+                        </div>
                     </form>
                     <label htmlFor="" onClick={WordDoc} >Por favor envie o seu resumo no formato Word.doc -- <a onClick={WordDoc} > Enviar Resumo</a></label>
                     {/* <EmailButton />*/}
