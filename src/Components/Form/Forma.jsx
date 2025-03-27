@@ -217,7 +217,7 @@ export default function Form() {
                         <input type="email" name="email" placeholder="Endereço de correio electrónico" onChange={valorInput} value={data.email} required />
 
                         {/* Criar o campo, quando o usuario digitar valor no campo, chamar com onChange a funcao valorInput*/}
-                        <input type="text" name="tema" placeholder="Título da comunicação (Caso apresente cominicação)" onChange={valorInput} value={data.tema} required />
+                        <input type="text" name="tema" placeholder="Título da comunicação (Caso apresente comunicação)" onChange={valorInput} value={data.tema} required />
 
                         {/* Criar o campo, quando o usuario digitar valor no campo, chamar com onChange a funcao valorInput*/}
                         {/* Deixar o textarea com valor de caracteres em infinito*/}
