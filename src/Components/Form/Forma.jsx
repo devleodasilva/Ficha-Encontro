@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import footerimg from "../../img/_footer1.jpg";
+import footerimg from "../../img/_footer2.jpg";
 import logoSemanalp from '../../img/_sml.png';
 import logoMED from '../../img/_mnte.png';
 import logoMirex from '../../img/_mntrle.png';
